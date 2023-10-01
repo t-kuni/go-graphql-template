@@ -1,3 +1,5 @@
+//go:generate go run github.com/99designs/gqlgen generate
+
 package graph
 
 import "github.com/t-kuni/go-graphql-template/graph/model"
