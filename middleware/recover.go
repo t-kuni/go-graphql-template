@@ -3,7 +3,7 @@ package middleware
 import (
 	"fmt"
 	"github.com/samber/do"
-	"github.com/t-kuni/go-web-api-template/logger"
+	"github.com/t-kuni/go-graphql-template/logger"
 	"net/http"
 	"runtime"
 )

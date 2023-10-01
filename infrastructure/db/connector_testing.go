@@ -9,8 +9,8 @@ import (
 	"github.com/DATA-DOG/go-txdb"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/samber/do"
-	"github.com/t-kuni/go-web-api-template/domain/infrastructure/db"
-	"github.com/t-kuni/go-web-api-template/ent"
+	"github.com/t-kuni/go-graphql-template/domain/infrastructure/db"
+	"github.com/t-kuni/go-graphql-template/ent"
 	"os"
 )
 

@@ -6,7 +6,7 @@ import (
 	"github.com/go-http-utils/headers"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/do"
-	"github.com/t-kuni/go-web-api-template/logger"
+	"github.com/t-kuni/go-graphql-template/logger"
 	"io/ioutil"
 	"net/http"
 	"time"

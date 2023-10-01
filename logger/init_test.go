@@ -4,7 +4,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus/hooks/test"
-	"github.com/t-kuni/go-web-api-template/logger"
+	"github.com/t-kuni/go-graphql-template/logger"
 	"io"
 	"os"
 	"path/filepath"

@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/rotisserie/eris"
 	"github.com/stretchr/testify/assert"
-	"github.com/t-kuni/go-web-api-template/logger"
+	"github.com/t-kuni/go-graphql-template/logger"
 	"net/http"
 	"net/http/httptest"
 	"strings"

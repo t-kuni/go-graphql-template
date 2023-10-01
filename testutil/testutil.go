@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/samber/do"
 	"github.com/sirupsen/logrus/hooks/test"
-	"github.com/t-kuni/go-web-api-template/di"
+	"github.com/t-kuni/go-graphql-template/di"
 	"path/filepath"
 	"runtime"
 	"strings"

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/samber/do"
-	"github.com/t-kuni/go-web-api-template/domain/infrastructure/api"
+	"github.com/t-kuni/go-graphql-template/domain/infrastructure/api"
 	"io/ioutil"
 	"net/http"
 )

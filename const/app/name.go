@@ -1,5 +1,5 @@
 package app
 
 const (
-	AppName = "go-web-api-template"
+	AppName = "go-graphql-template"
 )

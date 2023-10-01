@@ -8,8 +8,8 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/romanyx/polluter"
 	"github.com/samber/do"
-	"github.com/t-kuni/go-web-api-template/di"
-	infraDb "github.com/t-kuni/go-web-api-template/domain/infrastructure/db"
+	"github.com/t-kuni/go-graphql-template/di"
+	infraDb "github.com/t-kuni/go-graphql-template/domain/infrastructure/db"
 	"io/ioutil"
 	"path/filepath"
 )

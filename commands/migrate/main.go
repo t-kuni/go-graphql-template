@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/samber/do"
-	"github.com/t-kuni/go-web-api-template/di"
-	"github.com/t-kuni/go-web-api-template/domain/infrastructure/db"
+	"github.com/t-kuni/go-graphql-template/di"
+	"github.com/t-kuni/go-graphql-template/domain/infrastructure/db"
 	"os"
 	"path/filepath"
 )

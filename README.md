@@ -91,7 +91,7 @@ go run entgo.io/ent/cmd/ent init [EntityName]
 # Build Container for production
 
 ```
-docker build --target prod --tag go-web-api-template .
+docker build --target prod --tag go-graphql-template .
 ```
 
 # タスク

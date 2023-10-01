@@ -4,9 +4,9 @@ package service
 import (
 	"context"
 	"github.com/samber/do"
-	"github.com/t-kuni/go-web-api-template/domain/infrastructure/api"
-	"github.com/t-kuni/go-web-api-template/domain/infrastructure/db"
-	"github.com/t-kuni/go-web-api-template/ent"
+	"github.com/t-kuni/go-graphql-template/domain/infrastructure/api"
+	"github.com/t-kuni/go-graphql-template/domain/infrastructure/db"
+	"github.com/t-kuni/go-graphql-template/ent"
 )
 
 type ExampleService struct {
