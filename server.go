@@ -23,10 +23,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	println("DB_USER: " + os.Getenv("DB_USER"))
+	logger.SimpleInfoF("APP_ENV: %s, DB_HOST: %s", os.Getenv("APP_ENV"), os.Getenv("DB_HOST"))
 
 	app := di.NewApp()
-	// TODO: app.Shutdown()
+	defer app.Shutdown()
 
 	port := os.Getenv("SERVER_PORT")
 	if port == "" {
@@ -38,6 +38,6 @@ func main() {
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
 
-	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	logger.SimpleInfoF("connect to http://localhost:%s/ for GraphQL playground", port)
+	logger.SimpleFatal(http.ListenAndServe(":"+port, nil), nil)
 }
