@@ -1,6 +1,6 @@
-# Go Web API Template
+# Go GraphQL Template
 
-This repository is project template for Go Web API application.
+This repository is project template for Go GraphQL application.
 
 # Features
 
