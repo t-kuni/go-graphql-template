@@ -3,7 +3,7 @@ module github.com/t-kuni/go-graphql-template
 go 1.19
 
 require (
-	entgo.io/ent v0.11.6
+	entgo.io/ent v0.12.4
 	github.com/99designs/gqlgen v0.17.38
 	github.com/DATA-DOG/go-txdb v0.1.7
 	github.com/forPelevin/gomoji v1.1.8
@@ -12,18 +12,20 @@ require (
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/golang/mock v1.6.0
+	github.com/graph-gophers/dataloader/v7 v7.1.0
 	github.com/joho/godotenv v1.4.0
 	github.com/labstack/echo/v4 v4.10.0
 	github.com/romanyx/polluter v1.2.2
 	github.com/rotisserie/eris v0.5.4
 	github.com/samber/do v1.5.1
+	github.com/samber/lo v1.38.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/stretchr/testify v1.8.2
 	github.com/vektah/gqlparser/v2 v2.5.10
 )
 
 require (
-	ariga.io/atlas v0.9.1-0.20230119123307-a3ab6808892b // indirect
+	ariga.io/atlas v0.14.1-0.20230918065911-83ad451a4935 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/agnivade/levenshtein v1.1.1 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect

@@ -6,7 +6,7 @@ This repository is project template for Go Web API application.
 
 * [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
 * [DI Container](https://github.com/samber/do)
-* [Server generation from swagger](https://github.com/go-swagger/go-swagger)
+* Server generation from [GraphQL Scheme](https://graphql.org/learn/schema/) with [gqlgen](https://gqlgen.com/)
 * [Validator](https://github.com/go-playground/validator)
 * [ORM](https://github.com/ent/ent)
 * [Logging](https://github.com/sirupsen/logrus)
@@ -21,18 +21,9 @@ This repository is project template for Go Web API application.
 # Usage
 
 ```
-swagger generate server -A App -f ./swagger.yml --model-package=restapi/models
-go run cmd/app-server/main.go --scheme=http --port 34567 --host 0.0.0.0
-curl -i "http://localhost:34567"
-curl -i "http://localhost:34567/companies"
-curl -i "http://localhost:34567" -d "{\"description\":\"message $RANDOM\"}" -H 'Content-Type: application/io.goswagger.examples.todo-list.v1+json'
-curl -i localhost:34567/1 -X DELETE -H 'Content-Type: application/io.goswagger.examples.todo-list.v1+json'
-```
-
-```
 cp .env.example .env
 cp .env.feature.example .env.feature
-go generate -x ./...
+make generate
 docker compose up -d
 ```
 
@@ -47,8 +38,7 @@ go run commands/seed/main.go
 Confirm
 
 ```
-curl -XGET "http://localhost"
-curl -XPOST -H "Content-Type: application/json" -d '{"name":"DUMMY", "age":50}' http://localhost/users
+http://localhost:34567/
 ```
 
 # Tests
@@ -96,6 +86,9 @@ docker build --target prod --tag go-graphql-template .
 
 # タスク
 
+- [ ] 自動発行されるIDをUUIDにする
+- [ ] app.Shutdownを呼び出す
+- [ ] 認証処理
 - [ ] polluterからtestfixturesに載せ替え
 - [ ] マイグレーションの管理を切り出し
 - [ ] 認証処理のモック化

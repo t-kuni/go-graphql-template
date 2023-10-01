@@ -5,6 +5,7 @@ import (
 	"github.com/t-kuni/go-graphql-template/domain/service"
 	"github.com/t-kuni/go-graphql-template/infrastructure/api"
 	"github.com/t-kuni/go-graphql-template/infrastructure/db"
+	"github.com/t-kuni/go-graphql-template/loaders"
 	"github.com/t-kuni/go-graphql-template/middleware"
 	"github.com/t-kuni/go-graphql-template/validator"
 )
@@ -33,6 +34,10 @@ func NewApp() *do.Injector {
 	// UseCase
 	//do.Provide(injector, todos.NewFind)
 	//do.Provide(injector, companies.NewGetCompanies)
+
+	// Loaders
+	do.Provide(injector, loaders.NewLoader)
+	do.Provide(injector, loaders.NewLoaderImpl)
 
 	return injector
 }

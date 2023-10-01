@@ -6,31 +6,71 @@ package graph
 
 import (
 	"context"
-	"fmt"
+
+	"github.com/samber/do"
+	lop "github.com/samber/lo/parallel"
+	"github.com/t-kuni/go-graphql-template/domain/infrastructure/db"
+	"github.com/t-kuni/go-graphql-template/ent"
 	"github.com/t-kuni/go-graphql-template/graph/model"
-	"math/rand"
+	"github.com/t-kuni/go-graphql-template/loaders"
 )
 
 // CreateTodo is the resolver for the createTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	todo := &model.Todo{
-		Text:   input.Text,
-		ID:     fmt.Sprintf("T%d", rand.Int()),
-		User:   &model.User{ID: input.UserID, Name: "user " + input.UserID},
-		UserID: input.UserID,
+	conn := do.MustInvoke[db.Connector](r.App)
+	todo, err := conn.GetEnt().Todo.Create().
+		SetText(input.Text).
+		SetUserID(input.UserID).
+		SetDone(false).
+		Save(ctx)
+	if err != nil {
+		return nil, err
 	}
-	r.todos = append(r.todos, todo)
-	return todo, nil
+
+	return &model.Todo{ID: todo.ID, Text: todo.Text, Done: todo.Done}, nil
+}
+
+// CreateUser is the resolver for the createUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
+	conn := do.MustInvoke[db.Connector](r.App)
+	todo, err := conn.GetEnt().User.Create().SetName(input.Name).SetAge(input.Age).Save(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.User{ID: todo.ID, Name: todo.Name, Age: todo.Age}, nil
 }
 
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	return r.todos, nil
+	conn := do.MustInvoke[db.Connector](r.App)
+	todos, err := conn.GetEnt().Todo.Query().All(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return lop.Map(todos, func(v *ent.Todo, _ int) *model.Todo {
+		return &model.Todo{ID: v.ID, Text: v.Text, Done: v.Done, UserId: v.UserID}
+	}), nil
+}
+
+// Users is the resolver for the users field.
+func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
+	conn := do.MustInvoke[db.Connector](r.App)
+	users, err := conn.GetEnt().User.Query().All(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return lop.Map(users, func(v *ent.User, _ int) *model.User {
+		return &model.User{ID: v.ID, Name: v.Name, Age: v.Age}
+	}), nil
 }
 
 // User is the resolver for the user field.
 func (r *todoResolver) User(ctx context.Context, obj *model.Todo) (*model.User, error) {
-	return &model.User{ID: obj.UserID, Name: "user " + obj.UserID}, nil
+	l := do.MustInvoke[*loaders.Loaders](r.App)
+	return l.UserLoader.Load(ctx, obj.UserId)()
 }
 
 // Mutation returns MutationResolver implementation.

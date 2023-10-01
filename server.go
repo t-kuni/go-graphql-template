@@ -1,6 +1,9 @@
 package main
 
 import (
+	"github.com/joho/godotenv"
+	"github.com/t-kuni/go-graphql-template/di"
+	"github.com/t-kuni/go-graphql-template/logger"
 	"log"
 	"net/http"
 	"os"
@@ -13,12 +16,24 @@ import (
 const defaultPort = "8080"
 
 func main() {
-	port := os.Getenv("PORT")
+	godotenv.Load()
+
+	if err := logger.SetupLogger(); err != nil {
+		log.Fatalf("Logger initialization failed: %+v", err)
+		os.Exit(1)
+	}
+
+	println("DB_USER: " + os.Getenv("DB_USER"))
+
+	app := di.NewApp()
+	// TODO: app.Shutdown()
+
+	port := os.Getenv("SERVER_PORT")
 	if port == "" {
 		port = defaultPort
 	}
 
-	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{App: app}}))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
