@@ -12,6 +12,14 @@ type NewUser struct {
 	Age  int    `json:"age"`
 }
 
+type Todo struct {
+	ID     int    `json:"id"`
+	Text   string `json:"text"`
+	Done   bool   `json:"done"`
+	User   *User  `json:"user"`
+	UserID int    `json:"userId"`
+}
+
 type User struct {
 	ID   int    `json:"id"`
 	Age  int    `json:"age"`

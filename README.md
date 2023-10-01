@@ -90,6 +90,7 @@ docker build --target prod --tag go-graphql-template .
 - [ ] app.Shutdownを呼び出す
 - [ ] 認証処理
 - [ ] polluterからtestfixturesに載せ替え
+- [ ] テストを書けるようにする
 - [ ] マイグレーションの管理を切り出し
 - [ ] 認証処理のモック化
 - [ ] レスポンスがJSONではない処理のテスト（例えばファイルのダウンロードなど）

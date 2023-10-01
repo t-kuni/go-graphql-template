@@ -50,7 +50,7 @@ func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 	}
 
 	return lop.Map(todos, func(v *ent.Todo, _ int) *model.Todo {
-		return &model.Todo{ID: v.ID, Text: v.Text, Done: v.Done, UserId: v.UserID}
+		return &model.Todo{ID: v.ID, Text: v.Text, Done: v.Done, UserID: v.UserID}
 	}), nil
 }
 
@@ -70,7 +70,7 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 // User is the resolver for the user field.
 func (r *todoResolver) User(ctx context.Context, obj *model.Todo) (*model.User, error) {
 	l := do.MustInvoke[*loaders.Loaders](r.App)
-	return l.UserLoader.Load(ctx, obj.UserId)()
+	return l.UserLoader.Load(ctx, obj.UserID)()
 }
 
 // Mutation returns MutationResolver implementation.
