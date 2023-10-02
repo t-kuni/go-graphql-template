@@ -88,6 +88,8 @@ docker build --target prod --tag go-graphql-template .
 
 - [ ] 自動発行されるIDをUUIDにする
 - [ ] 認証処理
+- [ ] 認可処理
+- [ ] Subscribeを試す
 - [ ] polluterからtestfixturesに載せ替え
 - [ ] テストを書けるようにする
 - [ ] マイグレーションの管理を切り出し
