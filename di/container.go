@@ -17,6 +17,7 @@ func NewApp() *do.Injector {
 	do.Provide(injector, validator.NewCustomValidator)
 
 	// Middleware
+	do.Provide(injector, middleware.NewAuthentication)
 	do.Provide(injector, middleware.NewRecover)
 	do.Provide(injector, middleware.NewAccessLog)
 

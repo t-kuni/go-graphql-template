@@ -1,9 +1,12 @@
 package main
 
 import (
+	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
+	"github.com/samber/do"
 	"github.com/t-kuni/go-graphql-template/di"
 	"github.com/t-kuni/go-graphql-template/logger"
+	"github.com/t-kuni/go-graphql-template/middleware"
 	"log"
 	"net/http"
 	"os"
@@ -33,11 +36,20 @@ func main() {
 		port = defaultPort
 	}
 
+	r := chi.NewRouter()
+
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{App: app}}))
 
-	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	http.Handle("/query", srv)
+	r.Handle("/", playground.Handler("GraphQL playground", "/query"))
+	r.Group(func(r chi.Router) {
+		r.Use(do.MustInvoke[*middleware.Authentication](app).Middleware)
+		r.Handle("/query", srv)
+	})
 
 	logger.SimpleInfoF("connect to http://localhost:%s/ for GraphQL playground", port)
-	logger.SimpleFatal(http.ListenAndServe(":"+port, nil), nil)
+
+	err := http.ListenAndServe(":"+port, r)
+	if err != nil {
+		logger.SimpleFatal(err, nil)
+	}
 }
