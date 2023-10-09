@@ -38,7 +38,9 @@ func main() {
 
 	r := chi.NewRouter()
 
-	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{App: app}}))
+	c := graph.Config{Resolvers: &graph.Resolver{App: app}}
+	c.Directives = do.MustInvoke[graph.DirectiveRoot](app)
+	srv := handler.NewDefaultServer(graph.NewExecutableSchema(c))
 
 	r.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	r.Group(func(r chi.Router) {

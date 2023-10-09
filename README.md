@@ -88,8 +88,11 @@ docker build --target prod --tag go-graphql-template .
 
 - [ ] 自動発行されるIDをUUIDにする
 - [ ] graphql-playgroundを別コンテナに切り出す
+- [ ] クエリの絞り込み処理
 - [x] 認証処理
 - [ ] 認可処理
+  - [x] Directiveを実装してみる
+  - [ ] contextを見ればどのqueryが呼ばれたかなど分かるのか？
 - [ ] Subscribeを試す
 - [ ] polluterからtestfixturesに載せ替え
 - [ ] テストを書けるようにする

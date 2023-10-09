@@ -3,6 +3,7 @@ package di
 import (
 	"github.com/samber/do"
 	"github.com/t-kuni/go-graphql-template/domain/service"
+	"github.com/t-kuni/go-graphql-template/graph/directives"
 	"github.com/t-kuni/go-graphql-template/infrastructure/api"
 	"github.com/t-kuni/go-graphql-template/infrastructure/db"
 	"github.com/t-kuni/go-graphql-template/loaders"
@@ -12,6 +13,9 @@ import (
 
 func NewApp() *do.Injector {
 	injector := do.New()
+
+	// Directives
+	do.Provide(injector, directives.NewDirectives)
 
 	// Validator
 	do.Provide(injector, validator.NewCustomValidator)

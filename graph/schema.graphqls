@@ -2,6 +2,8 @@
 #
 # https://gqlgen.com/getting-started/
 
+directive @test on FIELD_DEFINITION
+
 type Todo {
   id: Int!
   text: String!
@@ -17,7 +19,7 @@ type User {
 }
 
 type Query {
-  todos: [Todo!]!
+  todos: [Todo!]! @test
   users: [User!]!
 }
 
@@ -32,6 +34,6 @@ input NewUser {
 }
 
 type Mutation {
-  createTodo(input: NewTodo!): Todo!
+  createTodo(input: NewTodo!): Todo! @test
   createUser(input: NewUser!): User!
 }
